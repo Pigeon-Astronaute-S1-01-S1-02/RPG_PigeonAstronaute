@@ -122,7 +122,7 @@
 /processorParam:TextureFormat=Color
 /build:peaks_3.png
 
-#begin Player.png
+#begin PersoBase.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -132,7 +132,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Player.png
+/build:PersoBase.png
 
 #begin side_torch_1.png
 /importer:TextureImporter
@@ -167,11 +167,6 @@
 /importer:TiledMapTilesetImporter
 /processor:TiledMapTilesetProcessor
 /build:TorcheFace.tsx
-
-#begin Tuiles.tsx
-/importer:TiledMapTilesetImporter
-/processor:TiledMapTilesetProcessor
-/build:Tuiles.tsx
 
 #begin Tuiles.tsx
 /importer:TiledMapTilesetImporter

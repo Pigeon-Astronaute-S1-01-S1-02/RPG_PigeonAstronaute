@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace RPG_PigeonAstronaute.Screens
 {
-    public abstract class Map : GameScreen, ICloneable
+    public abstract class Map : GameScreen
     {
         public Game1 _game1 { get; set; }
         public string _mapName { get; set; }
@@ -71,11 +71,6 @@ namespace RPG_PigeonAstronaute.Screens
                 res = false;
             }
             return res;
-        }
-
-        public object Clone()
-        {
-            return this.MemberwiseClone();
         }
     }
 }

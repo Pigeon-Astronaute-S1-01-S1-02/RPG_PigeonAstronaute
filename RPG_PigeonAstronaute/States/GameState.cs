@@ -6,26 +6,18 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RPG_PigeonAstronaute.Screens;
 using MonoGame.Extended.Sprites;
+using RPG_PigeonAstronaute.Sprites;
 
 namespace RPG_PigeonAstronaute.States
 {
     public class GameState : State
     {
-        private Game1 _game;
         private MapSpawn mapSpawn;
-
-        private AnimatedSprite _perso;
-
-        private SpriteFont _font;
-
-        private List<Sprite> _sprites;
-
-
 
         public GameState(Game1 game, ContentManager content) : base(game, content)
         {
             _game = game;
-            mapSpawn = new MapSpawn(_game);
+            mapSpawn = new MapSpawn(_game); 
         }
 
         public override void LoadContent()

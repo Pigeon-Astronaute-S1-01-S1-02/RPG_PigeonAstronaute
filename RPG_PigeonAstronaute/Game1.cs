@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using RPG_PigeonAstronaute.States;
+using RPG_PigeonAstronaute.Sprites;
 
 namespace RPG_PigeonAstronaute
 {
@@ -17,6 +18,8 @@ namespace RPG_PigeonAstronaute
 
         private State _currentState;
         private State _nextState;
+
+        private Player _player;
 
         public Game1()
         {

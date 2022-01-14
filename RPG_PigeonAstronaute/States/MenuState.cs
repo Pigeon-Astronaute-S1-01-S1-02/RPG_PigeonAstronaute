@@ -4,12 +4,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using RPG_PigeonAstronaute.Controls;
+using RPG_PigeonAstronaute.Sprites;
 
 namespace RPG_PigeonAstronaute.States
 {
     public class MenuState : State
     {
         private List<Component> _components;
+        private Player _player;
+
 
         public MenuState(Game1 game, ContentManager content)
           : base(game, content)
