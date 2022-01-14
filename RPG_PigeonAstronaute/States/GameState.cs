@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RPG_PigeonAstronaute.Screens;
-using System.Linq;
-using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Sprites;
-using MonoGame.Extended.Serialization;
-using MonoGame.Extended.Content;
 
 namespace RPG_PigeonAstronaute.States
 {
@@ -25,7 +20,7 @@ namespace RPG_PigeonAstronaute.States
 
         private List<Sprite> _sprites;
 
-        public int PlayerCount;
+
 
         public GameState(Game1 game, ContentManager content) : base(game, content)
         {
