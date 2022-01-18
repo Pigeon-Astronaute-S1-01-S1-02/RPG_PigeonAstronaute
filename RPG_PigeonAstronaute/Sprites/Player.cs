@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
@@ -13,50 +14,29 @@ using RPG_PigeonAstronaute.Screens;
 namespace RPG_PigeonAstronaute.Sprites
 {
 
-    public class Sprite : Component
+    public class Player : ModelePerso
     {
-        public enum Touches { Up, Down, Left, Right, Open, Attack };
-        public Game1 _game;
-        protected SpriteSheet _spriteTablo;
-        protected AnimatedSprite _sprite;
-        protected MapSpawn _mapSpawn;
-        protected Vector2 _size;
-        public Vector2 _position;
-        public Rectangle Rectangle;
-        protected List<string>_animations = new List<string>() {
-                "IdleNorth", "IdleSouth", "IdleEast", "IdleWest",
-                "WalkNorth", "WalkSouth", "WalkEast", "WalkWest",
-                "StrikeNorth", "StrikeSouth", "StrikeEast", "StrikeWest",
-                "Dead"};
-        protected float _scale { get; set; }
-        public int _vitesse = 100;
-        protected string[] _collisionLayers;
-        protected string _nomSpriteSheet { get; set; }
-        protected string _currentAnimation;
-        protected KeyboardState _kbState, _oldKbState;
-        public List<Keys> _touches = new List<Keys>() { Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.E, Keys.NumPad0 };
-
         public bool isOpeningChest = false;
 
         public OrthographicCamera _camera;
         private Vector2 _cameraPosition, movementDirection = Vector2.Zero;
 
-        public Sprite(Game1 game, string nomSpriteSheet, Vector2 size, Vector2 position, float scale, MapSpawn mapSpawn)
+        public Player(Game1 game, ContentManager content, MapSpawn mapSpawn, string nomSpriteSheet, Vector2 position, Vector2 size, float scale, uint vitesse)
         {
             _game = game;
-            _size = size;
-            _position = position;
-            _scale = scale;
-            _nomSpriteSheet = nomSpriteSheet;
-            _currentAnimation = _animations[2];
+            _content = content;
             _mapSpawn = mapSpawn;
+            _nomSpriteSheet = nomSpriteSheet;
+            _position = position;
+            _size = size;
+            _scale = scale;
+            _vitesse = vitesse;
             _collisionLayers = _mapSpawn.collisionLayers;
+            _currentAnimation = _animations[2];
         }
 
-        public void LoadContent()
+        public new void LoadContent()
         {
-            _spriteTablo = _game.Content.Load<SpriteSheet>(_nomSpriteSheet, new JsonContentLoader());
-            _sprite = new AnimatedSprite(_spriteTablo);
             var _vpAdatpter = new BoxingViewportAdapter(_game.Window, _game.GraphicsDevice, 500, 400);
             _camera = new OrthographicCamera(_vpAdatpter);
         }
@@ -67,6 +47,10 @@ namespace RPG_PigeonAstronaute.Sprites
             float walkSpeed = deltaSeconds * _vitesse;
             _oldKbState = _kbState;
             _kbState = Keyboard.GetState();
+
+            _spriteSheetMovement = _game.Content.Load<SpriteSheet>(_nomSpriteSheet, new JsonContentLoader());
+            _sprite = new AnimatedSprite(_spriteSheetMovement);
+
             Vector2 _tilePos = GetTilePos(_position.X, _position.Y, _mapSpawn._map);
 
             if (IsPresssingKey(_kbState, _touches[(int)Touches.Up], _touches[(int)Touches.Down], _touches[(int)Touches.Left], _touches[(int)Touches.Right]))
@@ -130,45 +114,7 @@ namespace RPG_PigeonAstronaute.Sprites
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            _game.spriteBatch.Draw(_sprite, _position, 0, new Vector2((float)0.5, (float)0.5));
-        }
-
-        public bool IsCollision(ushort x, ushort y, TiledMap _tiledMap, params string[] _layerName)
-        {
-            bool res = false;
-            if (_layerName != null && _layerName.Length > 0)
-                foreach (string _layer in _layerName)
-                {
-                    TiledMapTileLayer _mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>(_layer);
-                    TiledMapTile? tile;
-                    if (_mapLayer.TryGetTile(x, y, out tile) == false)
-                        res = false;
-                    if (!tile.Value.IsBlank)
-                        return true;
-                    res = false;
-                }
-            return res;
-        }
-
-        public Vector2 GetTilePos(float x, float y, TiledMap _tiledMap)
-        {
-            if (_kbState.IsKeyDown(_touches[(int)Touches.Left]))
-                return new Vector2((ushort)(x / _tiledMap.TileWidth - 1), (ushort)(y / _tiledMap.TileHeight));
-            else if (_kbState.IsKeyDown(_touches[(int)Touches.Right]))
-                return new Vector2((ushort)(x / _tiledMap.TileWidth + 1), (ushort)(y / _tiledMap.TileHeight));
-            else if (_kbState.IsKeyDown(_touches[(int)Touches.Up]))
-                return new Vector2((ushort)(x / _tiledMap.TileWidth), (ushort)(y / _tiledMap.TileHeight - 1));
-            else if (_kbState.IsKeyDown(_touches[(int)Touches.Down]))
-                return new Vector2((ushort)(x / _tiledMap.TileWidth), (ushort)(y / _tiledMap.TileHeight + 1));
-            else return new Vector2(-1, -1);
-        }
-
-        public bool IsPresssingKey(KeyboardState kbstate, params Keys[] keys)
-        {
-            foreach (Keys key in keys)
-                if (kbstate.IsKeyDown(key))
-                    return true;
-            return false;
+            _game.spriteBatch.Draw(_sprite, _position, 0, new Vector2(_scale, _scale));
         }
     }
 }

@@ -9,14 +9,14 @@ using RPG_PigeonAstronaute.Sprites;
 using RPG_PigeonAstronaute.Controls;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
-using static RPG_PigeonAstronaute.Sprites.Sprite;
+using static RPG_PigeonAstronaute.Sprites.Player;
 
 namespace RPG_PigeonAstronaute.States
 {
     public class GameState : State
     {
         public MapSpawn mapSpawn;
-        public Sprite _player;
+        public Player _player;
 
         public GameState(Game1 game, ContentManager content) : base(game, content)
         {
@@ -28,7 +28,7 @@ namespace RPG_PigeonAstronaute.States
         public override void LoadContent()
         {
             mapSpawn.LoadContent();
-            _player = new Sprite(_game, "PersoBase.sf", new Vector2(50, 80), new Vector2(500, 500), 3f, mapSpawn);
+            _player = new Player(_game, _content, mapSpawn, "PersoBase.sf", new Vector2(500, 500), new Vector2(64, 64), 0.5f, 100);
             _player.LoadContent();
         }
 
