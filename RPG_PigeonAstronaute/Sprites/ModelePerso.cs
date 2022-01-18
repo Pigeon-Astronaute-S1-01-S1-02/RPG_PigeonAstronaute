@@ -17,7 +17,7 @@ namespace RPG_PigeonAstronaute.Sprites
     {
         //Gestion du clavier
         public enum Touches { Up, Down, Left, Right, Open, Attack };
-        public List<Keys> _touches = new List<Keys>() { Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.E, Keys.NumPad0 };
+        public List<Keys> _touches = new List<Keys>() { Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.E, Keys.V };
         protected KeyboardState _kbState, _oldKbState;
 
         //Récupérer le jeu, son contenu, et la map + les obstacles
@@ -33,7 +33,7 @@ namespace RPG_PigeonAstronaute.Sprites
         //l'animation + le nom de chaque animation
         protected AnimatedSprite _sprite;
         protected string _currentAnimation;
-        protected List<string> _animations = new List<string>() {
+        protected List<string> _animationsMovement = new List<string>() {
                 "IdleNorth", "IdleSouth", "IdleEast", "IdleWest",
                 "WalkNorth", "WalkSouth", "WalkEast", "WalkWest",
                 "StrikeNorth", "StrikeSouth", "StrikeEast", "StrikeWest",
@@ -49,15 +49,12 @@ namespace RPG_PigeonAstronaute.Sprites
 
         public void LoadContent()
         {
-            _spriteSheetMovement = _game.Content.Load<SpriteSheet>(_nomSpriteSheet, new JsonContentLoader());
-            _sprite = new AnimatedSprite(_spriteSheetMovement);
         }
         public override void Update(GameTime gameTime)
         {
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            _game.spriteBatch.Draw(_sprite, _position, 0, new Vector2(_scale, _scale));
         }
 
         public bool IsCollision(ushort x, ushort y, TiledMap _tiledMap, params string[] _layerName)
