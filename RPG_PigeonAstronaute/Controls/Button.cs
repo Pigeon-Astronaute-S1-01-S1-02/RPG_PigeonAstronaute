@@ -40,12 +40,12 @@ namespace RPG_PigeonAstronaute.Controls
             if (_isHovering)
                 color = Color.Gray;
 
-            spriteBatch.Draw(_texture, Position, null, color, 0f, Origin, 1f, SpriteEffects.None, Layer);
+            spriteBatch.Draw(_texture, Position, null, color, 0f, Origin, 2f, SpriteEffects.None, Layer);
             if (!string.IsNullOrEmpty(Text))
             {
-                var x = (Rectangle.X - (_font.MeasureString(Text).X/2));
-                var y = (Rectangle.Y + (Rectangle.Height/2)) - (_font.MeasureString(Text).Y / 2);
-                spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColor, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, Layer + 0.01f);
+                var x = (Rectangle.X - ((_font.MeasureString(Text).X*2)/2));
+                var y = (Rectangle.Y + (Rectangle.Height/2)) - ((_font.MeasureString(Text).Y*2)/ 2);
+                spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColor, 0f, new Vector2(0, 0), 2f, SpriteEffects.None, Layer + 0.01f);
             }
         }
         public override void Update(GameTime gameTime)

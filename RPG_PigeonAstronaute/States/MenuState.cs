@@ -13,6 +13,7 @@ namespace RPG_PigeonAstronaute.States
         public MenuState(Game1 game, ContentManager content)
           : base(game, content)
         {
+            game.IsMouseVisible = true;
         }
 
         public override void LoadContent()
@@ -44,7 +45,7 @@ namespace RPG_PigeonAstronaute.States
                 new Button(buttonTexture, buttonFont)
                 {
                     Text = "Quit",
-                    Position = new Vector2(Game1.Screen.X / 2, 520),
+                    Position = new Vector2(Game1.Screen.X / 2, 560),
                     Click = new EventHandler(Button_Quit_Clicked),
                     Layer = 0.1f
                 },

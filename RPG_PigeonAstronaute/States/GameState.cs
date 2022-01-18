@@ -22,6 +22,7 @@ namespace RPG_PigeonAstronaute.States
         {
             _game = game;
             mapSpawn = new MapSpawn(_game);
+            _game.IsMouseVisible = false;
         }
 
         public override void LoadContent()

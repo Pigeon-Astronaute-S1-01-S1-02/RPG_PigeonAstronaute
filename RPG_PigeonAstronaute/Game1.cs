@@ -12,7 +12,7 @@ namespace RPG_PigeonAstronaute
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
-        public static Vector2 Screen = new Vector2(1280, 720);
+        public static Vector2 Screen = new Vector2(1920, 1600);
 
         private State _currentState;
         private State _nextState;
@@ -21,6 +21,7 @@ namespace RPG_PigeonAstronaute
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.IsFullScreen = true;
         }
 
         /// <summary>

@@ -123,14 +123,14 @@ namespace RPG_PigeonAstronaute.Sprites
             }
 
             _cameraPosition += _vitesse * movementDirection * deltaSeconds;
-            _camera.LookAt(_position);
+            _camera.LookAt(_position+new Vector2(0,70));
             _sprite.Play(_currentAnimation);
             _sprite.Update(deltaSeconds);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            _game.spriteBatch.Draw(_sprite, _position);
+            _game.spriteBatch.Draw(_sprite, _position, 0, new Vector2((float)0.5, (float)0.5));
         }
 
         public bool IsCollision(ushort x, ushort y, TiledMap _tiledMap, params string[] _layerName)
