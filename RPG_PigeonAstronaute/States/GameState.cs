@@ -9,14 +9,14 @@ using RPG_PigeonAstronaute.Sprites;
 using RPG_PigeonAstronaute.Controls;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
-using static RPG_PigeonAstronaute.Sprites.Perso;
+using static RPG_PigeonAstronaute.Sprites.Sprite;
 
 namespace RPG_PigeonAstronaute.States
 {
     public class GameState : State
     {
         public MapSpawn mapSpawn;
-        private Vector2 _spawnPos = new Vector2(750, 750);
+        public Sprite _player;
 
         public GameState(Game1 game, ContentManager content) : base(game, content)
         {
@@ -27,6 +27,8 @@ namespace RPG_PigeonAstronaute.States
         public override void LoadContent()
         {
             mapSpawn.LoadContent();
+            _player = new Sprite(_game, "PersoBase.sf", new Vector2(50, 80), new Vector2(500, 500), 3f, mapSpawn);
+            _player.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
@@ -40,6 +42,7 @@ namespace RPG_PigeonAstronaute.States
 
             mapSpawn.Update(gameTime);
             mapSpawn._renduMap.Update(gameTime);
+            _player.Update(gameTime);
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -49,8 +52,11 @@ namespace RPG_PigeonAstronaute.States
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            var transformMatrix = _player._camera.GetViewMatrix();
+            spriteBatch.Begin(transformMatrix: transformMatrix);
             mapSpawn.Draw(gameTime);
+            _player.Draw(gameTime, spriteBatch);
+            mapSpawn._renduMap.Draw(_player._camera.GetViewMatrix());
             spriteBatch.End();
         }
     }

@@ -10,7 +10,12 @@ namespace RPG_PigeonAstronaute.Screens
 {
     public class Mouvement
     {
-        public void Move(ref Vector2 posPerso, ref string animation, TiledMap _tiledMap, float walkSpeed, int hauteur, int largeur, AnimatedSprite _mc, List<string> animations,params string[] _layersName)
+        public Mouvement()
+        {
+
+        }
+
+        public void Move(ref Vector2 posPerso, ref string animation, TiledMap _tiledMap, float walkSpeed, int hauteur, int largeur, AnimatedSprite _mc, List<string> animations, params string[] _layersName)
         {
             KeyboardState keyboardState = Keyboard.GetState();
 
@@ -21,8 +26,6 @@ namespace RPG_PigeonAstronaute.Screens
                 animation = animations[3];
                 if (!IsCollision(tx, ty, _tiledMap, _layersName) && posPerso.X > 0 + _mc.TextureRegion.Width / 2)
                     posPerso.X -= walkSpeed;
-
-
             }
             else if (keyboardState.IsKeyDown(Keys.Right))
             {
@@ -47,7 +50,6 @@ namespace RPG_PigeonAstronaute.Screens
                 animation = animations[1];
                 if (!IsCollision(tx, ty, _tiledMap, _layersName) && posPerso.Y < _tiledMap.Height * hauteur + _mc.TextureRegion.Height / 2)
                     posPerso.Y += walkSpeed;
-
             }
             else
             {
