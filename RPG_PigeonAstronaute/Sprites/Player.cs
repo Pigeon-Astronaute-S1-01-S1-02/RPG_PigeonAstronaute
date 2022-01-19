@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,6 +8,7 @@ using MonoGame.Extended;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
+using MonoGame.Extended.Tiled;
 using MonoGame.Extended.ViewportAdapters;
 using RPG_PigeonAstronaute.Screens;
 
@@ -19,6 +21,7 @@ namespace RPG_PigeonAstronaute.Sprites
 
         public OrthographicCamera _camera;
         private Vector2 _cameraPosition, movementDirection = Vector2.Zero;
+        private Vector2 _posTile;
 
         public Player(Game1 game, ContentManager content, MapSpawn mapSpawn, string nomSpriteSheet, Vector2 position, Vector2 size, float scale, uint vitesse)
         {
@@ -49,10 +52,32 @@ namespace RPG_PigeonAstronaute.Sprites
             float walkSpeed = deltaSeconds * _vitesse;
             _oldKbState = _kbState;
             _kbState = Keyboard.GetState();
-            Vector2 _tilePos = GetTilePos(_position.X, _position.Y, _mapSpawn._map);
+            _posTile = new Vector2(_position.X / _mapSpawn._map.TileWidth, _position.Y / _mapSpawn._map.TileHeight);
 
-            if (IsPresssingKey(_kbState, _touches[(int)Touches.Up], _touches[(int)Touches.Down], _touches[(int)Touches.Left], _touches[(int)Touches.Right], _touches[(int)Touches.Attack], _touches[(int)Touches.Open]))
+            Vector2 _tilePos = GetTilePos(_posTile);
+            Vector2 _chestTilePos = GetTilePos(_posTile);
+
+            if (IsPresssingKey(_kbState, _touches[(int)Touches.Up], _touches[(int)Touches.Down], _touches[(int)Touches.Left], _touches[(int)Touches.Right]))
             {
+                if (OneShot(_touches[(int)Touches.Open]))
+                {
+                    if (_kbState.IsKeyDown(_touches[(int)Touches.Up]) && _position.Y >= _sprite.TextureRegion.Height && IsCollision((ushort)_tilePos.X, (ushort)_tilePos.Y, _mapSpawn._map, "Porte"))
+                        _position.Y -= _sprite.TextureRegion.Height;
+                    else if (_kbState.IsKeyDown(_touches[(int)Touches.Down]) && _position.Y <= _mapSpawn._map.HeightInPixels - _sprite.TextureRegion.Height / 2 && IsCollision((ushort)_tilePos.X, (ushort)_tilePos.Y, _mapSpawn._map, "Porte"))
+                        _position.Y += _sprite.TextureRegion.Height / 2;
+                    else if (_kbState.IsKeyDown(_touches[(int)Touches.Left]) && _position.X >= _sprite.TextureRegion.Width && IsCollision((ushort)_tilePos.X, (ushort)_tilePos.Y, _mapSpawn._map, "Porte"))
+                        _position.X -= _sprite.TextureRegion.Width;
+                    else if (_kbState.IsKeyDown(_touches[(int)Touches.Right]) && _position.Y <= _mapSpawn._map.WidthInPixels - _sprite.TextureRegion.Width / 2 && IsCollision((ushort)_tilePos.X, (ushort)_tilePos.Y, _mapSpawn._map, "Porte"))
+                        _position.X += _sprite.TextureRegion.Width / 2;
+                    else if (IsCollision((ushort)_chestTilePos.X, (ushort)_chestTilePos.Y, _mapSpawn._map, "Coffre"))
+                        Console.WriteLine("Chest Opened");
+                    else Console.WriteLine("Opened");
+                }
+                if (OneShot(_touches[(int)Touches.Attack]))
+                {
+                    Console.WriteLine("PSIOU");
+                }
+
                 if (_kbState.IsKeyDown(_touches[(int)Touches.Left]) && _position.X > 0 + _sprite.TextureRegion.Width / 2)
                 {
                     _currentAnimation = _animationsMovement[7];
@@ -91,15 +116,6 @@ namespace RPG_PigeonAstronaute.Sprites
                 }
                 else if (movementDirection != Vector2.Zero)
                     movementDirection.Normalize();
-
-                if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _oldKbState.IsKeyDown(_touches[(int)Touches.Up]))
-                    _currentAnimation = _animationsMovement[8];
-                else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _oldKbState.IsKeyDown(_touches[(int)Touches.Down]))
-                    _currentAnimation = _animationsMovement[9];
-                else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _oldKbState.IsKeyDown(_touches[(int)Touches.Left]))
-                    _currentAnimation = _animationsMovement[10];
-                else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _oldKbState.IsKeyDown(_touches[(int)Touches.Right]))
-                    _currentAnimation = _animationsMovement[11];
             }
             else
             {
@@ -111,15 +127,12 @@ namespace RPG_PigeonAstronaute.Sprites
                     _currentAnimation = _animationsMovement[0];
                 else if (!_kbState.IsKeyDown(_touches[(int)Touches.Down]) && _oldKbState.IsKeyDown(_touches[(int)Touches.Down]))
                     _currentAnimation = _animationsMovement[1];
+
+                _cameraPosition += _vitesse * movementDirection * deltaSeconds;
+                _camera.LookAt(_position + new Vector2(0, 70));
+                _sprite.Play(_currentAnimation);
+                _sprite.Update(deltaSeconds);
             }
-
-
-
-
-            _cameraPosition += _vitesse * movementDirection * deltaSeconds;
-            _camera.LookAt(_position+new Vector2(0,70));
-            _sprite.Play(_currentAnimation);
-            _sprite.Update(deltaSeconds);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

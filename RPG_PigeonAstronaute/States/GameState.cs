@@ -17,7 +17,7 @@ namespace RPG_PigeonAstronaute.States
     {
         public MapSpawn mapSpawn;
         public Player _player;
-        public Ennemie _ennemie;
+        public Ennemi _ennemi;
 
         public GameState(Game1 game, ContentManager content) : base(game, content)
         {
@@ -31,8 +31,8 @@ namespace RPG_PigeonAstronaute.States
             mapSpawn.LoadContent();
             _player = new Player(_game, _content, mapSpawn, "PersoBase.sf", new Vector2(500, 500), new Vector2(64, 64), 0.5f, 100);
             _player.LoadContent();
-            _ennemie = new Ennemie(_game, _content, mapSpawn, "DemiBossMouvement.sf", new Vector2(550, 550), new Vector2(64, 64), 0.5f, 100);
-            _ennemie.LoadContent();
+            _ennemi = new Ennemi(_game, _content, mapSpawn, "DemiBossMouvement.sf", new Vector2(550, 550), new Vector2(64, 64), 0.5f, 100);
+            _ennemi.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
@@ -45,7 +45,7 @@ namespace RPG_PigeonAstronaute.States
             mapSpawn.Update(gameTime);
             mapSpawn._renduMap.Update(gameTime);
             _player.Update(gameTime);
-            _ennemie.Update(gameTime);
+            _ennemi.Update(gameTime);
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -58,7 +58,7 @@ namespace RPG_PigeonAstronaute.States
             var transformMatrix = _player._camera.GetViewMatrix();
             spriteBatch.Begin(transformMatrix: transformMatrix);
             mapSpawn.Draw(gameTime);
-            _ennemie.Draw(gameTime, spriteBatch);
+            _ennemi.Draw(gameTime, spriteBatch);
             _player.Draw(gameTime, spriteBatch);
             mapSpawn._renduMap.Draw(_player._camera.GetViewMatrix());
             spriteBatch.End();

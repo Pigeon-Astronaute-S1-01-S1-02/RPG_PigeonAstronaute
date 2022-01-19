@@ -30,6 +30,12 @@
 /processorParam:TextureFormat=Color
 /build:Archere.png
 
+#begin Archere.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:Archere.sf
+
 #begin Boss.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -41,6 +47,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Boss.png
+
+#begin BossAttaque.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:BossAttaque.sf
+
+#begin BossMouvement.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:BossMouvement.sf
 
 #begin Bougie.tsx
 /importer:TiledMapTilesetImporter
@@ -83,6 +101,18 @@
 /processorParam:TextureFormat=Color
 /build:DemiBoss.png
 
+#begin DemiBossAttaque.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:DemiBossAttaque.sf
+
+#begin DemiBossMouvement.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:DemiBossMouvement.sf
+
 #begin Dungeon_Tileset.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -106,6 +136,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Epeiste.png
+
+#begin EpeisteAttaque.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:EpeisteAttaque.sf
+
+#begin EpeisteMouvement.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:EpeisteMouvement.sf
 
 #begin flamethrower_1_4.png
 /importer:TextureImporter
@@ -160,6 +202,18 @@
 /processorParam:TextureFormat=Color
 /build:Hallebardier.png
 
+#begin HallebardierAttaque.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:HallebardierAttaque.sf
+
+#begin HallebardierMouvement.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:HallebardierMouvement.sf
+
 #begin MapEtage.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
@@ -193,6 +247,78 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:PersoBase.png
+
+#begin PersoBaseBotte.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotte.sf
+
+#begin PersoBaseBotteDague.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotteDague.sf
+
+#begin PersoBaseBotteDagueGant.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotteDagueGant.sf
+
+#begin PersoBaseBotteDagueGantCote.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotteDagueGantCote.sf
+
+#begin PersoBaseBotteGantCoteEpeeAttaque.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotteGantCoteEpeeAttaque.sf
+
+#begin PersoBaseBotteGantCoteEpeeCasqueAttaque.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotteGantCoteEpeeCasqueAttaque.sf
+
+#begin PersoBaseBotteGantCoteEpeeCasqueFullArmureAttaque.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotteGantCoteEpeeCasqueFullArmureAttaque.sf
+
+#begin PersoBaseBotteGantCoteEpeeCasqueFullArmureBouclierAttaque.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotteGantCoteEpeeCasqueFullArmureBouclierAttaque.sf
+
+#begin PersoBaseBotteGantCoteEpeeCasqueFullArmureBouclierMouvement.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotteGantCoteEpeeCasqueFullArmureBouclierMouvement.sf
+
+#begin PersoBaseBotteGantCoteEpeeCasqueFullArmureMouvement.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotteGantCoteEpeeCasqueFullArmureMouvement.sf
+
+#begin PersoBaseBotteGantCoteEpeeCasqueMouvement.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotteGantCoteEpeeCasqueMouvement.sf
+
+#begin PersoBaseBotteGantCoteEpeeMouvement.sf
+/importer:SpriteFactoryContentImporter
+/processor:SpriteFactoryContentProcessor
+/processorParam:ContentType=MonoGame.Extended MonoGame.Extended.Animations.SpriteFactory.SpriteFactoryFileReader, MonoGame.Extended.Animations
+/build:PersoBaseBotteGantCoteEpeeMouvement.sf
 
 #begin side_torch_1.png
 /importer:TextureImporter

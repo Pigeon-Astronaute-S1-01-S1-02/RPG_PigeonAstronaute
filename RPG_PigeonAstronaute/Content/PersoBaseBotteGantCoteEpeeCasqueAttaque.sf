@@ -1,0 +1,29 @@
+{
+  "textureAtlas": {
+    "texture": "PersoBaseBotteGantCoteEpeeCasque.png",
+    "regionWidth": 192,
+    "regionHeight": 192
+  },
+  "cycles": {
+    "strikeNorth": {
+      "frames": [56,57,58,59,60,61],
+      "isLooping": false,
+      "frameDuration": 0.2
+    },
+    "strikeWest": {
+      "frames": [64,65,66,67,68,69],
+      "isLooping": false,
+      "frameDuration": 0.2
+    },
+    "strikeSouth": {
+      "frames": [72,73,74,75,76,77],
+      "isLooping": false,
+      "frameDuration": 0.2
+    },
+    "animation3": {
+      "frames": [80,81,82,83,84,85],
+      "isLooping": false,
+      "frameDuration": 0.2
+    }
+  }
+}

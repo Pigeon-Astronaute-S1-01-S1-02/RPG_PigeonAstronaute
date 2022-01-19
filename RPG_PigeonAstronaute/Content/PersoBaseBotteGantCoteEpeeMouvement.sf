@@ -1,0 +1,54 @@
+{
+  "textureAtlas": {
+    "texture": "PersoBaseBotteGantCoteEpee.png",
+    "regionWidth": 64,
+    "regionHeight": 64
+  },
+  "cycles": {
+    "idleNorth": {
+      "frames": [192],
+      "isLooping": false,
+      "frameDuration": 0.2
+    },
+    "walkNorth": {
+      "frames": [193,194,195,196,197,198,199,200],
+      "isLooping": false,
+      "frameDuration": 0.1
+    },
+    "idleWest": {
+      "frames": [216],
+      "isLooping": false,
+      "frameDuration": 0.1
+    },
+    "walkWest": {
+      "frames": [217,218,219,220,221,222,223,224],
+      "isLooping": false,
+      "frameDuration": 0.1
+    },
+    "idleSouth": {
+      "frames": [240],
+      "isLooping": false,
+      "frameDuration": 0.1
+    },
+    "walkSouth": {
+      "frames": [241,242,243,244,245,246,247,248],
+      "isLooping": false,
+      "frameDuration": 0.1
+    },
+    "idleEast": {
+      "frames": [264],
+      "isLooping": false,
+      "frameDuration": 0.1
+    },
+    "walkEast": {
+      "frames": [265,266,267,268,269,270,271,272],
+      "isLooping": false,
+      "frameDuration": 0.2
+    },
+    "animation8": {
+      "frames": [240,482,483,484,485],
+      "isLooping": false,
+      "frameDuration": 0.2
+    }
+  }
+}

@@ -12,9 +12,9 @@ using RPG_PigeonAstronaute.Screens;
 
 namespace RPG_PigeonAstronaute.Sprites
 {
-    public class Ennemie:ModelePerso
+    public class Ennemi : ModelePerso
     {
-        public Ennemie(Game1 game, ContentManager content, MapSpawn mapSpawn, string nomSpriteSheet, Vector2 position, Vector2 size, float scale, uint vitesse)
+        public Ennemi(Game1 game, ContentManager content, MapSpawn mapSpawn, string nomSpriteSheet, Vector2 position, Vector2 size, float scale, uint vitesse)
         {
             _game = game;
             _content = content;
