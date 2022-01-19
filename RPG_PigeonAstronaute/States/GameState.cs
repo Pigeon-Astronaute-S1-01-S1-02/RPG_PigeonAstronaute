@@ -29,9 +29,9 @@ namespace RPG_PigeonAstronaute.States
         public override void LoadContent()
         {
             mapSpawn.LoadContent();
-            _player = new Player(_game, _content, mapSpawn, "PersoBase.sf", new Vector2(500, 500), new Vector2(64, 64), 0.5f, 100);
+            _player = new Player(_game, _content, mapSpawn, "PersoBase.sf", new Vector2(500, 500), new Vector2(64, 64), 0.5f, 100, 100, 5, 5);
             _player.LoadContent();
-            _ennemie = new Ennemie(_game, _content, mapSpawn, "DemiBossMouvement.sf", new Vector2(550, 550), new Vector2(64, 64), 0.5f, 100);
+            _ennemie = new Ennemie(_game, _content, mapSpawn, "DemiBossMouvement.sf", new Vector2(550, 550), new Vector2(64, 64), 0.5f, 100,100,15,10);
             _ennemie.LoadContent();
         }
 

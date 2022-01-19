@@ -14,7 +14,7 @@ namespace RPG_PigeonAstronaute.Sprites
 {
     public class Ennemie:ModelePerso
     {
-        public Ennemie(Game1 game, ContentManager content, MapSpawn mapSpawn, string nomSpriteSheet, Vector2 position, Vector2 size, float scale, uint vitesse)
+        public Ennemie(Game1 game, ContentManager content, MapSpawn mapSpawn, string nomSpriteSheet, Vector2 position, Vector2 size, float scale, uint vitesse, int health, int dgt, int def)
         {
             _game = game;
             _content = content;
@@ -26,6 +26,9 @@ namespace RPG_PigeonAstronaute.Sprites
             _vitesse = vitesse;
             _collisionLayers = _mapSpawn.collisionLayers;
             _currentAnimation = _animationsMovement[2];
+            _health = health;
+            _dgt = dgt;
+            _def = def;
         }
 
         public new void LoadContent()

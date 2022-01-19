@@ -18,7 +18,7 @@ namespace RPG_PigeonAstronaute.Sprites
         //Gestion du clavier
         public enum Touches { Up, Down, Left, Right, Open, Attack };
         public List<Keys> _touches = new List<Keys>() { Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.E, Keys.V };
-        protected KeyboardState _kbState, _oldKbState;
+        public KeyboardState _kbState, _oldKbState;
 
         //Récupérer le jeu, son contenu, et la map + les obstacles
         protected Game1 _game;
@@ -39,11 +39,19 @@ namespace RPG_PigeonAstronaute.Sprites
         protected List<string> _animationsAttack = new List<string>() {
                 "StrikeNorth", "StrikeSouth", "StrikeEast", "StrikeWest"};
 
-        //Caractéristique
+        //Dimension
         public Vector2 _position;
         protected Vector2 _size;
         protected float _scale { get; set; }
+        public Rectangle _rectangleSize
+        {
+            get { return new Rectangle((int)_position.X, (int)_position.Y, 0 + _sprite.TextureRegion.Width, 0 + 0 + _sprite.TextureRegion.Height);}
+        }
+        //Stats
         public uint _vitesse;
+        public int _dgt;
+        public int _health;
+        public int _def;
 
         public ModelePerso(){}
 
@@ -86,6 +94,22 @@ namespace RPG_PigeonAstronaute.Sprites
                 return new Vector2((ushort)(x / _tiledMap.TileWidth), (ushort)(y / _tiledMap.TileHeight + 1));
             else return new Vector2(-1, -1);
         }
+        public Vector2 GetTilePos(Vector2 _tilePos)
+        {
+            if (_kbState.IsKeyDown(_touches[(int)Touches.Left]))
+                return new Vector2((ushort)(_tilePos.X - 1), (ushort)_tilePos.Y);
+            else if (_kbState.IsKeyDown(_touches[(int)Touches.Right]))
+                return new Vector2((ushort)(_tilePos.X + 1), (ushort)_tilePos.Y);
+            else if (_kbState.IsKeyDown(_touches[(int)Touches.Up]))
+                return new Vector2((ushort)_tilePos.X, (ushort)(_tilePos.Y - 1));
+            else if (_kbState.IsKeyDown(_touches[(int)Touches.Down]))
+                return new Vector2((ushort)_tilePos.X, (ushort)(_tilePos.Y + 1));
+            else return new Vector2(-1, -1);
+        }
+        public Vector2 GetTileCoordinates(Vector2 _tilePos, TiledMap _tiledMap)
+        {
+            return new Vector2(_tilePos.X / _tiledMap.Width, _tilePos.Y / _tiledMap.Height);
+        }
 
         public bool IsPresssingKey(KeyboardState kbstate, params Keys[] keys)
         {
@@ -93,6 +117,10 @@ namespace RPG_PigeonAstronaute.Sprites
                 if (kbstate.IsKeyDown(key))
                     return true;
             return false;
+        }
+        public bool OneShot(Keys key)
+        {
+            return IsPresssingKey(_kbState, key) && !IsPresssingKey(_oldKbState, key);
         }
     }
 }
