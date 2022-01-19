@@ -35,9 +35,9 @@ namespace RPG_PigeonAstronaute.Sprites
         protected string _currentAnimation;
         protected List<string> _animationsMovement = new List<string>() {
                 "IdleNorth", "IdleSouth", "IdleEast", "IdleWest",
-                "WalkNorth", "WalkSouth", "WalkEast", "WalkWest",
-                "StrikeNorth", "StrikeSouth", "StrikeEast", "StrikeWest",
-                "Dead"};
+                "WalkNorth", "WalkSouth", "WalkEast", "WalkWest", "Dead"};
+        protected List<string> _animationsAttack = new List<string>() {
+                "StrikeNorth", "StrikeSouth", "StrikeEast", "StrikeWest"};
 
         //Caractéristique
         public Vector2 _position;

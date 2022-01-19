@@ -98,13 +98,13 @@ namespace RPG_PigeonAstronaute.Sprites
                     movementDirection.Normalize();
 
                 if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _lasttouche == _touches[(int)Touches.Up])
-                    _currentAnimation = _animationsMovement[8];
+                    _currentAnimation = _animationsAttack[0];
                 else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _lasttouche == _touches[(int)Touches.Down])
-                    _currentAnimation = _animationsMovement[9];
+                    _currentAnimation = _animationsAttack[1];
                 else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _lasttouche == _touches[(int)Touches.Right])
-                    _currentAnimation = _animationsMovement[10];
+                    _currentAnimation = _animationsAttack[2];
                 else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _lasttouche == _touches[(int)Touches.Left])
-                    _currentAnimation = _animationsMovement[11];
+                    _currentAnimation = _animationsAttack[3];
             }
             else
             {
@@ -117,9 +117,6 @@ namespace RPG_PigeonAstronaute.Sprites
                 else if (!_kbState.IsKeyDown(_touches[(int)Touches.Down]) && _oldKbState.IsKeyDown(_touches[(int)Touches.Down]))
                     _currentAnimation = _animationsMovement[1];
             }
-
-
-
 
             _cameraPosition += _vitesse * movementDirection * deltaSeconds;
             _camera.LookAt(_position+new Vector2(0,70));
