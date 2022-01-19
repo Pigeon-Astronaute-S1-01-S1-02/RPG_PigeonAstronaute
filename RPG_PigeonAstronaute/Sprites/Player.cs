@@ -16,6 +16,7 @@ namespace RPG_PigeonAstronaute.Sprites
     public class Player : ModelePerso
     {
         public bool isOpeningChest = false;
+        public Keys _lasttouche;
 
         public OrthographicCamera _camera;
         private Vector2 _cameraPosition, movementDirection = Vector2.Zero;
@@ -56,6 +57,7 @@ namespace RPG_PigeonAstronaute.Sprites
                 if (_kbState.IsKeyDown(_touches[(int)Touches.Left]) && _position.X > 0 + _sprite.TextureRegion.Width / 2)
                 {
                     _currentAnimation = _animationsMovement[7];
+                    _lasttouche = _touches[(int)Touches.Left];
                     if (!IsCollision((ushort)_tilePos.X, (ushort)_tilePos.Y, _mapSpawn._map, _collisionLayers))
                     {
                         _position.X -= walkSpeed;
@@ -65,6 +67,7 @@ namespace RPG_PigeonAstronaute.Sprites
                 else if (_kbState.IsKeyDown(_touches[(int)Touches.Right]) && _position.X + _sprite.TextureRegion.Width < Game1.Screen.X + _sprite.TextureRegion.Width / 2)
                 {
                     _currentAnimation = _animationsMovement[6];
+                    _lasttouche = _touches[(int)Touches.Right];
                     if (!IsCollision((ushort)_tilePos.X, (ushort)_tilePos.Y, _mapSpawn._map, _collisionLayers))
                     {
                         _position.X += walkSpeed;
@@ -74,6 +77,7 @@ namespace RPG_PigeonAstronaute.Sprites
                 else if (_kbState.IsKeyDown(_touches[(int)Touches.Up]) && _position.Y > +_sprite.TextureRegion.Height / 2)
                 {
                     _currentAnimation = _animationsMovement[4];
+                    _lasttouche = _touches[(int)Touches.Up];
                     if (!IsCollision((ushort)_tilePos.X, (ushort)_tilePos.Y, _mapSpawn._map, _collisionLayers))
                     {
                         _position.Y -= walkSpeed;
@@ -83,6 +87,7 @@ namespace RPG_PigeonAstronaute.Sprites
                 else if (_kbState.IsKeyDown(_touches[(int)Touches.Down]) && _position.Y + _sprite.TextureRegion.Height < Game1.Screen.Y + _sprite.TextureRegion.Height / 2)
                 {
                     _currentAnimation = _animationsMovement[5];
+                    _lasttouche = _touches[(int)Touches.Down];
                     if (!IsCollision((ushort)_tilePos.X, (ushort)_tilePos.Y, _mapSpawn._map, _collisionLayers))
                     {
                         _position.Y += walkSpeed;
@@ -92,13 +97,13 @@ namespace RPG_PigeonAstronaute.Sprites
                 else if (movementDirection != Vector2.Zero)
                     movementDirection.Normalize();
 
-                if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _oldKbState.IsKeyDown(_touches[(int)Touches.Up]))
+                if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _lasttouche == _touches[(int)Touches.Up])
                     _currentAnimation = _animationsMovement[8];
-                else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _oldKbState.IsKeyDown(_touches[(int)Touches.Down]))
+                else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _lasttouche == _touches[(int)Touches.Down])
                     _currentAnimation = _animationsMovement[9];
-                else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _oldKbState.IsKeyDown(_touches[(int)Touches.Left]))
+                else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _lasttouche == _touches[(int)Touches.Right])
                     _currentAnimation = _animationsMovement[10];
-                else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _oldKbState.IsKeyDown(_touches[(int)Touches.Right]))
+                else if (_kbState.IsKeyDown(_touches[(int)Touches.Attack]) && _lasttouche == _touches[(int)Touches.Left])
                     _currentAnimation = _animationsMovement[11];
             }
             else
