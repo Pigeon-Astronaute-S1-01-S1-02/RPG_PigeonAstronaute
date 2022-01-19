@@ -10,6 +10,9 @@ using RPG_PigeonAstronaute.Controls;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 using static RPG_PigeonAstronaute.Sprites.Player;
+using MonoGame.Extended.Tiled;
+
+//https://www.youtube.com/watch?v=iunc_x7iJvM
 
 namespace RPG_PigeonAstronaute.States
 {
@@ -33,6 +36,8 @@ namespace RPG_PigeonAstronaute.States
             _player.LoadContent();
             _ennemi = new Ennemi(_game, _content, mapSpawn, "DemiBossMouvement.sf", new Vector2(550, 550), new Vector2(64, 64), 0.5f, 100);
             _ennemi.LoadContent();
+            var p = new PathFinding();
+            var path = p.FindPath(_ennemi._position, _player._position, GetTiles(mapSpawn._map, "Mur"));
         }
 
         public override void Update(GameTime gameTime)
@@ -62,6 +67,12 @@ namespace RPG_PigeonAstronaute.States
             _player.Draw(gameTime, spriteBatch);
             mapSpawn._renduMap.Draw(_player._camera.GetViewMatrix());
             spriteBatch.End();
+        }
+
+        public IList<TiledMapTile> GetTiles(TiledMap map, string layerName)
+        {
+            TiledMapTileLayer layer = map.GetLayer<TiledMapTileLayer>(layerName);
+            return new List<TiledMapTile>(layer.Tiles);
         }
     }
 }

@@ -2,20 +2,65 @@
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
+using RPG_PigeonAstronaute.Controls;
+using RPG_PigeonAstronaute.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace RPG_PigeonAstronaute.Screens
 {
+    public enum Directions { Up = 1, Down = 0, Left = 2, Right = 3 };
+
     public class Mouvement
     {
+        private readonly PathFinding pathFinding;
+        private IList<Vector2> path;
+        public bool IsDone;
+        private int index;
+
         public Mouvement()
         {
-
+            pathFinding = new PathFinding();
         }
 
-        public void Move(ref Vector2 posPerso, ref string animation, TiledMap _tiledMap, float walkSpeed, int hauteur, int largeur, AnimatedSprite _mc, List<string> animations, params string[] _layersName)
+        public void StartPathFinding(Ennemi _ennemi, Vector2 goalTilePos, IList<TiledMapTile> collisions)
+        {
+            path = pathFinding.FindPath(_ennemi._posTile, goalTilePos, collisions);
+            index = 0;
+            IsDone = false;
+        }
+
+        public void UpdatePF(Ennemi _ennemi, Vector2 goalTilePos, IList<TiledMapTile> collisions)
+        {
+            if (!IsDone)
+                return;
+            GoToNextTile(_ennemi);
+        }
+
+        public void GoToNextTile(Ennemi _ennemi)
+        {
+            if (index < path.Count)
+            {
+                var tile = path[index];
+                var dirVector = tile - _ennemi._posTile;
+
+            }
+        }
+
+        public void Move(Directions dir, ref Vector2 posPerso, TiledMap _tiledMap, float walkSpeed, int hauteur, int largeur, Sprite _mc, List<string> animations, params string[] _layersName)
+        {
+            if (dir == Directions.Left)
+                posPerso.X -= walkSpeed;
+            else if (dir == Directions.Right)
+                posPerso.X += walkSpeed;
+            else if (dir == Directions.Up)
+                posPerso.Y -= walkSpeed;
+            else if (dir == Directions.Down)
+                posPerso.Y += walkSpeed;
+        }
+
+        public void Move(ref Vector2 posPerso, ref string animation, TiledMap _tiledMap, float walkSpeed, int hauteur, int largeur, Sprite _mc, List<string> animations, params string[] _layersName)
         {
             KeyboardState keyboardState = Keyboard.GetState();
 
@@ -71,6 +116,23 @@ namespace RPG_PigeonAstronaute.Screens
                     return true;
             }
             return col;
+        }
+
+        public Vector2 ConvertDirectionToVector(Directions direction)
+        {
+            switch (direction)
+            {
+                case Directions.Left:
+                    return new Vector2(-1, 0);
+                case Directions.Up:
+                    return new Vector2(0, -1);
+                case Directions.Right:
+                    return new Vector2(1, 0);
+                case Directions.Down:
+                    return new Vector2(0, 1);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+            }
         }
     }
 }

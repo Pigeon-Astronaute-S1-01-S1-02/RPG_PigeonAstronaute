@@ -52,25 +52,8 @@ namespace RPG_PigeonAstronaute.Screens
         public override void Draw(GameTime gameTime)
         {
             _game1.GraphicsDevice.Clear(Color.Black);
-            /*_game1.spriteBatch.Begin();
-            _renduMap.Draw();
-            _game1.spriteBatch.End();*/
         }
 
-        public bool IsCollision(ushort x, ushort y, TiledMap _tiledMap, params string[] _layerName)
-        {
-            bool res = false;
-            foreach (string _layer in _layerName)
-            {
-                TiledMapTileLayer _mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>(_layer);
-                TiledMapTile? tile;
-                if (_mapLayer.TryGetTile(x, y, out tile) == false)
-                    res = false;
-                if (!tile.Value.IsBlank)
-                    return true;
-                res = false;
-            }
-            return res;
-        }
+        
     }
 }
