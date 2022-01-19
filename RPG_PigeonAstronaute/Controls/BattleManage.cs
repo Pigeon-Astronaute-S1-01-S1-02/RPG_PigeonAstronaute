@@ -1,7 +1,4 @@
 ﻿using RPG_PigeonAstronaute.Sprites;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RPG_PigeonAstronaute.Controls
 {

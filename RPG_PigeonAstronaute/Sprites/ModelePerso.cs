@@ -2,14 +2,10 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.Content;
-using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
 using RPG_PigeonAstronaute.Screens;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RPG_PigeonAstronaute.Sprites
 {

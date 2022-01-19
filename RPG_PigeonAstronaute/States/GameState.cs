@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,10 +6,6 @@ using Microsoft.Xna.Framework.Input;
 using RPG_PigeonAstronaute.Screens;
 using RPG_PigeonAstronaute.Sprites;
 using RPG_PigeonAstronaute.Controls;
-using MonoGame.Extended;
-using MonoGame.Extended.ViewportAdapters;
-using static RPG_PigeonAstronaute.Sprites.Player;
-using static RPG_PigeonAstronaute.Sprites.ModelePerso;
 
 namespace RPG_PigeonAstronaute.States
 {
