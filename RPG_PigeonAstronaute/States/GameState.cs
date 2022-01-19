@@ -10,6 +10,7 @@ using RPG_PigeonAstronaute.Controls;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 using static RPG_PigeonAstronaute.Sprites.Player;
+using static RPG_PigeonAstronaute.Sprites.ModelePerso;
 
 namespace RPG_PigeonAstronaute.States
 {
@@ -18,6 +19,7 @@ namespace RPG_PigeonAstronaute.States
         public MapSpawn mapSpawn;
         public Player _player;
         public Ennemie _ennemie;
+        public BattleManage _battle;
 
         public GameState(Game1 game, ContentManager content) : base(game, content)
         {
@@ -33,6 +35,7 @@ namespace RPG_PigeonAstronaute.States
             _player.LoadContent();
             _ennemie = new Ennemie(_game, _content, mapSpawn, "DemiBossMouvement.sf", new Vector2(550, 550), new Vector2(64, 64), 0.5f, 100,100,15,10);
             _ennemie.LoadContent();
+            _battle = new BattleManage();
         }
 
         public override void Update(GameTime gameTime)
@@ -41,6 +44,10 @@ namespace RPG_PigeonAstronaute.States
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 _game.ChangeState(new MenuState(_game, _content));
+
+            _battle.Fight(_player, _ennemie);
+            Console.WriteLine(_ennemie._health);
+            Console.WriteLine(_battle.IntersectSprite(_player, _ennemie));
 
             mapSpawn.Update(gameTime);
             mapSpawn._renduMap.Update(gameTime);

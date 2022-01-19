@@ -32,7 +32,7 @@ namespace RPG_PigeonAstronaute.Sprites
 
         //l'animation + le nom de chaque animation
         protected AnimatedSprite _sprite;
-        protected string _currentAnimation;
+        public string _currentAnimation;
         protected List<string> _animationsMovement = new List<string>() {
                 "IdleNorth", "IdleSouth", "IdleEast", "IdleWest",
                 "WalkNorth", "WalkSouth", "WalkEast", "WalkWest", "Dead"};
@@ -43,10 +43,6 @@ namespace RPG_PigeonAstronaute.Sprites
         public Vector2 _position;
         protected Vector2 _size;
         protected float _scale { get; set; }
-        public Rectangle _rectangleSize
-        {
-            get { return new Rectangle((int)_position.X, (int)_position.Y, 0 + _sprite.TextureRegion.Width, 0 + 0 + _sprite.TextureRegion.Height);}
-        }
         //Stats
         public uint _vitesse;
         public int _dgt;

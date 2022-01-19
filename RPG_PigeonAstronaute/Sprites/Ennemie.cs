@@ -14,6 +14,11 @@ namespace RPG_PigeonAstronaute.Sprites
 {
     public class Ennemie:ModelePerso
     {
+        public Rectangle _rectangleSize
+        {
+            get { return new Rectangle((int)_position.X, (int)_position.Y, 0 + _sprite.TextureRegion.Width, 0 + 0 + _sprite.TextureRegion.Height); }
+        }
+
         public Ennemie(Game1 game, ContentManager content, MapSpawn mapSpawn, string nomSpriteSheet, Vector2 position, Vector2 size, float scale, uint vitesse, int health, int dgt, int def)
         {
             _game = game;

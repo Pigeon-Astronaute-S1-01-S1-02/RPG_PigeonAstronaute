@@ -10,6 +10,7 @@ using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.ViewportAdapters;
 using RPG_PigeonAstronaute.Screens;
+using RPG_PigeonAstronaute.Controls;
 
 namespace RPG_PigeonAstronaute.Sprites
 {
@@ -23,6 +24,11 @@ namespace RPG_PigeonAstronaute.Sprites
         private Vector2 _cameraPosition, movementDirection = Vector2.Zero;
 
         private Vector2 _posTile;
+
+        public Rectangle _rectangleSize
+        {
+            get { return new Rectangle((int)_position.X, (int)_position.Y, 0 + _sprite.TextureRegion.Width, 0 + 0 + _sprite.TextureRegion.Height); }
+        }
 
         public Player(Game1 game, ContentManager content, MapSpawn mapSpawn, string nomSpriteSheet, Vector2 position, Vector2 size, float scale, uint vitesse, int health, int dgt, int def)
         {
